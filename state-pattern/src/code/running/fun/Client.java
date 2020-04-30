@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class Client {
     public static void main(String[] args) {
 
-        CellingFanChain1 cellingFanChain = new CellingFanChain1();
+        CellingFanChain cellingFanChain = new CellingFanChain();
 
         while (true) {
             System.out.print("Press ENTER");
