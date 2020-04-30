@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * @author chenhaowei
+ * @author harryhook
  */
 public class Client {
     public static void main(String[] args) {
