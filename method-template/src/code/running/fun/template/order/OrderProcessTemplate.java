@@ -1,4 +1,4 @@
-package code.running.fun;
+package code.running.fun.template.order;
 
 public abstract class OrderProcessTemplate {
 

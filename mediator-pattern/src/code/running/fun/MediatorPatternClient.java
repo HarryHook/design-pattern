@@ -1,6 +1,6 @@
 package code.running.fun;
 
-public class Client {
+public class MediatorPatternClient {
 
     public static void main(String[] args) {
         IATCMediator atcMediator = new ATCMediator();
