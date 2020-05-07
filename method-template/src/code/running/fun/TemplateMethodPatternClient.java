@@ -1,14 +1,12 @@
 package code.running.fun;
 
-public class TestTemplatePattern {
+public class TemplateMethodPatternClient {
 	public static void main(String[] args) {
 		System.out.println("For MYSQL....");
 		ConnectionTemplate template = new MySqLCSVCon();
+		template.disableLogging();
 		template.run();
-		
-		System.out.println("\nFor Oracle...");
-		template = new OracleTxtCon();
-		template.run();
+
 	}
 
 }

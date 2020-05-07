@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 /**
  * @author harryhook
  */
-public class Client {
+public class StatePatternClient {
     public static void main(String[] args) {
 
         CellingFanChain cellingFanChain = new CellingFanChain();
