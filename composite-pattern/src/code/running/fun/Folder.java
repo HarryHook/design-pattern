@@ -30,5 +30,4 @@ public class Folder extends Component {
             componentList.remove(component);
         }
     }
-
 }
