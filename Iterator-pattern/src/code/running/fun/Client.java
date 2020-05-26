@@ -9,12 +9,19 @@ public class Client {
 
         Iterator<MenuItem> itemIterator = dinnerMenu.createIterator();
         while (itemIterator.hasNext()) {
-            System.out.println(itemIterator.next().getDescription());
+            MenuItem menuItem = itemIterator.next();
+            System.out.println(menuItem.getName() + " ");
+            System.out.println(menuItem.getPrice() + " ");
+            System.out.println(menuItem.getDescription() + " ");
         }
         itemIterator = pancakeHouseMenu.createIterator();
 
+        System.out.println("===========================");
         while (itemIterator.hasNext()) {
-            System.out.println(itemIterator.next().getDescription());
+            MenuItem menuItem = itemIterator.next();
+            System.out.println(menuItem.getName() + " ");
+            System.out.println(menuItem.getPrice() + " ");
+            System.out.println(menuItem.getDescription() + " ");
         }
     }
 }

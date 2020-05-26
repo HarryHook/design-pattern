@@ -1,11 +1,10 @@
 package code.running.fun;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PancakeHouseMenuIterator implements Iterator {
 
-    List<MenuItem> menuItems = new ArrayList<>();
+    List<MenuItem> menuItems;
 
     int position = 0;
 
