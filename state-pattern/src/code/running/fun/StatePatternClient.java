@@ -17,6 +17,7 @@ public class StatePatternClient {
             nextPull();
             cellingFanChain.pull();
         }
+
     }
 
     static String nextPull() {
