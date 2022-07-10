@@ -2,65 +2,46 @@ package com.coderunning.fun;
 
 public class Game {
 
-    private int itsScore;
-    private int[] itsThrows = new int[21];
-    private int itsCurrentThrow = 0;
-
     private int itsCurrentFrame = 1;
 
-    private Boolean firstThrow = true;
+    private Score iteratorScore = new Score();
+    private Boolean firstThrowInFrame = true;
 
 
     public int score() {
-        return scoreForFrame(getCurrentFrame()-1);
+        return scoreForFrame(itsCurrentFrame);
     }
 
     public void add(int pins) {
-        itsThrows[itsCurrentThrow++] = pins;
-        this.itsScore += pins;
+        iteratorScore.addThrow(pins);
         adjustCurrentFrame(pins);
     }
 
+    private void adjustCurrentFrame(int pins) {
+        if (lastBallInFrame(pins)) {
+            advanceFrame();
+        } else {
+            firstThrowInFrame = false;
+        }
+    }
+
+    private boolean lastBallInFrame(int pins) {
+        return strike(pins) || !firstThrowInFrame;
+    }
+
+    private boolean strike(int pins) {
+        return firstThrowInFrame && pins == 10;
+    }
+
+    private void advanceFrame() {
+        itsCurrentFrame = Math.min(itsCurrentFrame + 1, 10);
+    }
 
     public int scoreForFrame(int frame) {
-        int score = 0;
-        int ball = 0;
-        for (int currentFrame = 0; currentFrame < frame; currentFrame++) {
-            int firstThrow = itsThrows[ball++];
-            if (firstThrow == 10) {
-                int secondThrow = itsThrows[ball];
-                score += 10 + secondThrow + itsThrows[ball+1];
-            } else {
-                int secondThrow = itsThrows[ball++];
-                int frameScore = firstThrow + secondThrow;
-                if(frameScore == 10) {
-                    score += frameScore + itsThrows[ball];
-                } else {
-                    score += frameScore;
-                }
-            }
-        }
-        return score;
+
+        return iteratorScore.scoreForFrame(frame);
     }
 
-    public int getCurrentFrame() {
-        return this.itsCurrentFrame;
-    }
-
-    private void adjustCurrentFrame(int pins) {
-        if (firstThrow) {
-            if(pins == 10) {
-                itsCurrentFrame++;
-            } else {
-                firstThrow = false;
-            }
-        } else {
-            firstThrow = true;
-            itsCurrentFrame++;
-        }
-        //
-        itsCurrentFrame = Math.min(itsCurrentFrame, 11);
-    }
 
 
 }

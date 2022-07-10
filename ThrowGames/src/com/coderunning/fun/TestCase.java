@@ -19,7 +19,6 @@ public class TestCase {
         Game game = new Game();
         game.add(5);
         assertEquals(5, game.score());
-        assertEquals(1, game.getCurrentFrame());
     }
 
     @Test
@@ -27,7 +26,6 @@ public class TestCase {
         game.add(5);
         game.add(4);
         assertEquals(9, game.score());
-        assertEquals(2, game.getCurrentFrame());
     }
 
     @Test
@@ -35,12 +33,10 @@ public class TestCase {
         game.add(5);
         game.add(4);
         game.add(7);
-        game.add(3);
-        game.add(1);
-        assertEquals(20, game.score());
+        game.add(2);
+        assertEquals(18, game.score());
         assertEquals(9, game.scoreForFrame(1));
-        assertEquals(20, game.scoreForFrame(2));
-        assertEquals(3, game.getCurrentFrame());
+        assertEquals(18, game.scoreForFrame(2));
 
     }
 
@@ -52,6 +48,19 @@ public class TestCase {
         assertEquals(19, game.scoreForFrame(1));
         assertEquals(28, game.score());
     }
+
+    @Test
+    public void testSimpleSpareFrameSpare() {
+        game.add(3);
+        game.add(7);
+        game.add(3);
+        game.add(2);
+
+        assertEquals(13, game.scoreForFrame(1));
+        assertEquals(18, game.scoreForFrame(2));
+        assertEquals(18, game.score());
+    }
+
 
     @Test
     public void testAllThrow() {
@@ -69,6 +78,16 @@ public class TestCase {
 
     @Test
     public void testHeartBreak() {
+        for (int i = 0; i < 11; i++) {
+            game.add(10);
+        }
+        game.add(9);
+        assertEquals(299, game.score());
+
+    }
+
+    @Test
+    public void testTenthFrameSpare() {
         for (int i = 0; i < 9; i++) {
             game.add(10);
         }
