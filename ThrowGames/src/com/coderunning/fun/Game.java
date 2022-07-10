@@ -6,19 +6,19 @@ public class Game {
     private int[] itsThrows = new int[21];
     private int itsCurrentThrow = 0;
 
-    private int itsCurrentFrame = 0;
+    private int itsCurrentFrame = 1;
 
     private Boolean firstThrow = true;
 
 
     public int score() {
-        return itsScore;
+        return scoreForFrame(getCurrentFrame()-1);
     }
 
     public void add(int pins) {
         itsThrows[itsCurrentThrow++] = pins;
         this.itsScore += pins;
-        adjustCurrentFrame();
+        adjustCurrentFrame(pins);
     }
 
 
@@ -27,28 +27,39 @@ public class Game {
         int ball = 0;
         for (int currentFrame = 0; currentFrame < frame; currentFrame++) {
             int firstThrow = itsThrows[ball++];
-            int secondThrow = itsThrows[ball++];
-            int fraeScore = firstThrow + secondThrow;
-            if (fraeScore == 10) {
-                score += fraeScore + itsThrows[ball++];
+            if (firstThrow == 10) {
+                int secondThrow = itsThrows[ball];
+                score += 10 + secondThrow + itsThrows[ball+1];
             } else {
-                score += fraeScore;
+                int secondThrow = itsThrows[ball++];
+                int frameScore = firstThrow + secondThrow;
+                if(frameScore == 10) {
+                    score += frameScore + itsThrows[ball];
+                } else {
+                    score += frameScore;
+                }
             }
         }
         return score;
     }
 
     public int getCurrentFrame() {
-        return itsCurrentFrame;
+        return this.itsCurrentFrame;
     }
 
-    private void adjustCurrentFrame() {
+    private void adjustCurrentFrame(int pins) {
         if (firstThrow) {
-            firstThrow = false;
-            itsCurrentFrame++;
+            if(pins == 10) {
+                itsCurrentFrame++;
+            } else {
+                firstThrow = false;
+            }
         } else {
             firstThrow = true;
+            itsCurrentFrame++;
         }
+        //
+        itsCurrentFrame = Math.min(itsCurrentFrame, 11);
     }
 
 
